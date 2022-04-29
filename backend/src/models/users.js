@@ -97,6 +97,7 @@ const userSchema = new mongoose.Schema({
     userType: {
         type: String,
         emum: ["Student","Admin","Special"],
+        default: "Student",
     }
 }, {
     timestamps: true

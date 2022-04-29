@@ -13,6 +13,14 @@ const blogSchema = new mongoose.Schema({
     Tags:[{
         type: String
     }],
+    isDraft : {
+        type: Boolean,
+        default: false
+    },
+    isPublished : {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true
 });

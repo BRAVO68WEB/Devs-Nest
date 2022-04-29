@@ -1,27 +1,33 @@
 const Food = require("../models/food");
 const Residence = require("../models/residence");
 module.exports.createStore = async (req, res, next) => {
-    try {
-        const {
-            storeName,
-            storeAddress,
-            storePhone,
-            location,
-            isInsideCampus,
-            openTimes
-        } = req.body;
-        const food = new Food({
-            storeName,
-            storeAddress,
-            storePhone,
-            location,
-            isInsideCampus,
-            openTimes
-        });
-        const result = await food.save();
-        res.status(200).send(result);
-    } catch (err) {
-        res.status(500).send(err);
+    if(req.user.userType === "Admin")
+    {
+        try {
+            const {
+                storeName,
+                storeAddress,
+                storePhone,
+                location,
+                isInsideCampus,
+                openTimes
+            } = req.body;
+            const food = new Food({
+                storeName,
+                storeAddress,
+                storePhone,
+                location,
+                isInsideCampus,
+                openTimes
+            });
+            const result = await food.save();
+            res.status(200).send(result);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    }
+    else{
+        res.status(403).send("You are not authorized to perform this action");
     }
 };
 
@@ -46,49 +52,59 @@ module.exports.viewStore = async (req, res, next) => {
 
 
 module.exports.createResidence = async (req, res, next) => {
-    try {
-        const {
-            Name,
-            Phone,
-            Type,
-            Description,
-            Image,
-            LocationAddress,
-            LocationCity,
-            LocationZip,
-            GoogleMapsPin,
-            Price,
-            Features,
-            RoomsType
-        } = req.body;
-        const residence = new Residence({
-            Name,
-            Phone,
-            Type,
-            Description,
-            Image,
-            LocationAddress,
-            LocationCity,
-            LocationZip,
-            GoogleMapsPin,
-            Price,
-            Features,
-            RoomsType
-        });
-        const result = await residence.save();
-        res.status(200).send(result);
-    } catch (err) {
-        res.status(500).send(err);
+    if(req.user.userType === "Admin"){
+        try {
+            const {
+                Name,
+                Phone,
+                Type,
+                Description,
+                Image,
+                LocationAddress,
+                LocationCity,
+                LocationZip,
+                GoogleMapsPin,
+                Price,
+                Features,
+                RoomsType
+            } = req.body;
+            const residence = new Residence({
+                Name,
+                Phone,
+                Type,
+                Description,
+                Image,
+                LocationAddress,
+                LocationCity,
+                LocationZip,
+                GoogleMapsPin,
+                Price,
+                Features,
+                RoomsType
+            });
+            const result = await residence.save();
+            res.status(200).send(result);
+        } catch (err) {
+            res.status(500).send(err);
+        }
     }
+    else{
+        res.status(403).send("You are not authorized to perform this action");
+    }
+    
 };
 
 module.exports.deleteResidence = async (req, res, next) => {
+    if(req.user.userType === "Admin"){
     try {
         const { id } = req.params;
         const residence = await Residence.findByIdAndDelete(id);
         res.status(200).send(residence);
     } catch (err) {
         res.status(500).send(err);
+    }}
+    else{
+        res.status(403).send("You are not authorized to perform this action");
     }
 }
 

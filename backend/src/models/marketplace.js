@@ -29,7 +29,7 @@ const marketplaceSchema = new mongoose.Schema({
             type: Number,
         }
     },
-    itemSold: {
+    ItemSold: {
         type: Boolean,
         default: false
     }

@@ -34,6 +34,10 @@ const transportationSchema = new mongoose.Schema({
     RegistrationNo: {
         type: Number,
     },
+    isAttended: {
+        type: Boolean,
+        default: false
+    }
 },{
     timestamps: true
 });

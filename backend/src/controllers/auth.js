@@ -44,7 +44,7 @@ module.exports.register = async (req, res, next) => {
           });
         }
         req.body.VerificationCode = nanoid();
-
+        req.body.userType = "Student";           
         const user = User(req.body);
         const salt = await bcrypt.genSalt(10);
         user.Password = await bcrypt.hash(user.Password, salt);
@@ -68,8 +68,8 @@ module.exports.register = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
     try {
         const user = await User.findByCredentials(
-          req.body.email,
-          req.body.password
+          req.body.Email,
+          req.body.Password
         );
         if (user) {
           const token = await user.generateAuthToken();

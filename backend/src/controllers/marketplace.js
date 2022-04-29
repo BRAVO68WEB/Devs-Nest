@@ -3,24 +3,29 @@ const Marketplace = require("../models/marketplace");
 module.exports.enlistStudentItem = async (req, res, next) => {
     try {
         const {
-            itemName,
-            itemDescription,
-            itemImage,
-            itemPrice,
-            itemLocation,
-            itemCategory,
-            itemCondition,
-            itemOwner,
+            ItemName,
+            ItemDescription,
+            ItemImage,
+            ItemPrice,
+            ItemLocation,
+            ItemCategory,
+            ItemCondition,
         } = req.body;
+
+        var ItemOwner = {
+            Name: req.user.FirstName + " " + req.user.LastName,
+            RegistrationNo: req.user.RegistrationNo,
+        }
+
         const studentItem = new Marketplace({
-            itemName,
-            itemDescription,
-            itemImage,
-            itemPrice,
-            itemLocation,
-            itemCategory,
-            itemCondition,
-            itemOwner,
+            ItemName,
+            ItemDescription,
+            ItemImage,
+            ItemPrice,
+            ItemLocation,
+            ItemCategory,
+            ItemCondition,
+            ItemOwner
         });
         const result = await studentItem.save();
         res.status(200).send(result);
@@ -58,13 +63,29 @@ module.exports.viewItemByCategory = async (req, res, next) => {
     }
 }
 
-module.exports.markItemSold = async (req, res, next) => {
+module.exports.markAsSold = async (req, res, next) => {
     try {
         const { id } = req.params;
+        // req.user.RegistrationNo
+        const OriginalItem = await Marketplace.findById(id);
+        if(OriginalItem.ItemOwner.RegistrationNo != req.user.RegistrationNo){
+           return res.status(500).send("You are not allowed to mark this item as sold");
+        };
+
         const item = await Marketplace.findByIdAndUpdate(id, {
             itemSold: true,
         });
         res.status(200).send(item);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+}
+
+module.exports.listItemByOwner = async (req, res, next) => {
+    try {
+        const { RegistrationNo } = req.params;
+        const items = await Marketplace.find({ ItemOwner: { RegistrationNo } });
+        res.status(200).send(items);
     } catch (err) {
         res.status(500).send(err);
     }
