@@ -1,4 +1,3 @@
-const keys = require("../config/keys");
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 const { sendVerificationEmail } = require("../utils/mailer");

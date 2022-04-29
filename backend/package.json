@@ -1,19 +1,12 @@
 {
-  "name": "personalapi",
+  "name": "backend-api",
   "version": "1.0.0",
-  "description": "My Personal API",
+  "description": "",
   "main": "src/app.js",
   "scripts": {
     "start": "node .",
     "dev": "nodemon ."
   },
-  "keywords": [
-    "personal-api",
-    "github",
-    "wakatime",
-    "api",
-    "tracker"
-  ],
   "author": "BRAVO68WEB",
   "license": "ISC",
   "dependencies": {

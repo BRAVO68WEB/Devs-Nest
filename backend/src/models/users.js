@@ -94,6 +94,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
     },
+    userType: {
+        type: String,
+        emum: ["Student","Admin","Special"],
+    }
 }, {
     timestamps: true
 })

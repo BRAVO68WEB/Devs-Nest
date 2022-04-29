@@ -1,5 +1,3 @@
-const axios = require("axios");
-const keys = require("../config/keys");
 const Blogs = require("../models/blogs");
 
 module.exports.createBlog = async (req, res, next) => {

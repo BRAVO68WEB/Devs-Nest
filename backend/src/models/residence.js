@@ -9,7 +9,11 @@ const residenceSchema = new mongoose.Schema({
     },
     Type: {
         type: String,
-        enum: ["Hostel", "Guest House", "Hostel & Guest House","PG","PG + Mess"],
+        enum: ["Hostel", "Guest House", "Hostel & Guest House", "PG", "PG + Mess"],
+    },
+    GenderType: {
+        type: String,
+        enum: ["M", "F", "M/F"],
     },
     Description: {
         type: String,
@@ -29,10 +33,10 @@ const residenceSchema = new mongoose.Schema({
     GoogleMapsPin: {
         type: String,
     },
-    Price:{
+    Price: {
         type: Number,
     },
-    Features:{
+    Features: {
         isWiFiAvailable: {
             type: Boolean,
         },
