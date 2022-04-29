@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    # restart: always
+    volumes:
+      - ./packages/backend:/packages/backend
+    ports:
+      - '5000:5000'
+
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    restart: always
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - '3000:3000'
