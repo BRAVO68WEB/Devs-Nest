@@ -1,6 +1,7 @@
 const Food = require("../models/food");
 const Residence = require("../models/residence");
 module.exports.createStore = async (req, res, next) => {
+    console.log(req.user);
     if(req.user.userType === "Admin")
     {
         try {

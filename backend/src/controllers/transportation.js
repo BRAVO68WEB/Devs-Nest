@@ -28,7 +28,7 @@ module.exports.bookTransportation = async (req, res, next) => {
             NoOfPassengers,
             NoOfLuggage,
             PhoneNumber: req.user.PhoneNumber,
-            Name: req.user.FirstName + " " + req.user.LastName,
+            Name: req.user.Name,
             RegistrationNo: req.user.RegistrationNo,
         });
 

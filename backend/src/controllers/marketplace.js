@@ -13,7 +13,7 @@ module.exports.enlistStudentItem = async (req, res, next) => {
         } = req.body;
 
         var ItemOwner = {
-            Name: req.user.FirstName + " " + req.user.LastName,
+            Name: req.user.Name,
             RegistrationNo: req.user.RegistrationNo,
         }
 

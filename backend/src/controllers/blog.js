@@ -17,7 +17,7 @@ module.exports.createBlog = async (req, res, next) => {
         res.status(500).send(err);
     }
    }
-   else{
+   else {
          res.status(500).send("You are not authorized to perform this action");
    }
 };

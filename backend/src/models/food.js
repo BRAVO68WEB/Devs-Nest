@@ -3,27 +3,28 @@ const mongoose = require("mongoose");
 const foodSchema = new mongoose.Schema({
     storeName: {
         type: String,
-    },
-    storeAddress: {
+      },
+      storeAddress: {
         type: String,
-    },
-    storePhone: {
+      },
+      storePhone: {
         type: String,
-    },
-    location: {
+      },
+      location: {
         type: String,
-    },
-    isInsideCampus: {
+      },
+      isInsideCampus: {
         type: Boolean,
-    },
-    openTimes: {
-        from:{
-            type: String,
-        },
-        to:{
-            type: String,
-        }
-    }
+      },
+      openTimesfrom: {
+        type: String,
+      },
+      openTimesto: {
+        type: String,
+      },
+      storeDesp: {
+        type: String,
+      },
 },{
     timestamps: true
 })

@@ -11,10 +11,10 @@ var emailValidator = (email) => {
 
 module.exports.register = async (req, res, next) => {
     try {
-        if (!req.body.FirstName || !req.body.LastName) {
+        if (!req.body.Name) {
           return res.send({
             success: false,
-            message: "First and Last name Required",
+            message: "Name Required",
           });
         }
         if(!emailValidator(req.body.Email)){
